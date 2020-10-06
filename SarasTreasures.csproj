@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Donate\" />
+    <Folder Include="Views\Rescue\" />
+  </ItemGroup>
 </Project>
