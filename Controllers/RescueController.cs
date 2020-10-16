@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+using SarasTreasures.Models;
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SarasTreasures.Controllers
@@ -16,15 +18,27 @@ namespace SarasTreasures.Controllers
             return View();
         }
 
+
         public IActionResult Adopt()
         {
             return View();
         }
 
+
         public IActionResult HappyTails()
         {
-            return View();
+            Stories model = new Stories();
+            User userName = new User();
+            model.UserName = userName;
+            return View(model);
         }
+
+        [HttpPost]
+        public IActionResult HappyTails(Stories model)
+        {
+            return View(model);
+        }
+
 
         public IActionResult Resources()
         {

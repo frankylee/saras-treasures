@@ -62,14 +62,24 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+/* Contact page */
+#staff-list {
+    padding-left: 0;
+    list-style: none;
+}
+#staff-list li {
+    margin-bottom: 1rem;
+}
+
 .footer {
-/*  position: absolute;
+    /*  position: absolute;
   bottom: 0;*/
-  width: 100%;
-/*  white-space: nowrap;*/
-  /*line-height: 60px;*/ /* Vertically center the text there */
-  padding: 1rem 0;
-  margin: 2rem 0 1rem;
+    width: 100%;
+    /*  white-space: nowrap;*/
+    /*line-height: 60px;*/ /* Vertically center the text there */
+    padding: 1rem 0;
+    margin: 2rem 0 1rem;
 }
 #footer-nav {
     display: flex;
