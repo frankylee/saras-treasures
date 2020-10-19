@@ -10,25 +10,25 @@
 
 <form method="post" class="col-md-8 my-5">
     <div class="form-group">
-        <label class="sr-only">Title</label>
+        <label class="control-label sr-only">Title</label>
         <input type="text" asp-for="Title" class="form-control form-control-lg" placeholder="Pet's name" required>
     </div>
     <div class="form-group">
-        <label class="sr-only">Pet adoption story</label>
+        <label class="control-label sr-only">Pet adoption story</label>
         <textarea type="text" asp-for="Text" class="form-control form-control-lg" rows="8" maxlength="5000" placeholder="Share your pet adoption story..." required></textarea>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="sr-only">Name</label>
+            <label class="control-label sr-only">Name</label>
             <input type="text" asp-for="UserName.Name" class="form-control form-control-lg" placeholder="Full name or username" required>
         </div>
         <div class="form-group col-md-6">
-            <label class="sr-only">Today's Date</label>
+            <label class="control-label sr-only">Today's Date</label>
             <input type="date" asp-for="Date" class="form-control form-control-lg" placeholder="Date" required>
         </div>
     </div>
     <div class="form-group mb-4">
-        <label class="sr-only">Upload Photo</label>
+        <label class="control-label sr-only">Upload Photo</label>
         <input type="file" asp-for="FileName" class="form-control-file">
     </div>
     <button type="submit" class="btn btn-lg btn-primary">Submit</button>
