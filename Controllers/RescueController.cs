@@ -27,15 +27,17 @@ namespace SarasTreasures.Controllers
 
         public IActionResult HappyTails()
         {
-            Stories model = new Stories();
-            User userName = new User();
-            model.UserName = userName;
-            return View(model);
+            //Stories model = new Stories();
+            //User userName = new User();
+            //model.UserName = userName;
+            //return View(model);
+            return View();
         }
 
         [HttpPost]
         public IActionResult HappyTails(Stories model)
         {
+            model.Date = DateTime.Now;
             return View(model);
         }
 

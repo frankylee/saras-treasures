@@ -5,45 +5,47 @@
 }
 
 
-<h1>Tell us about your successful adoptions!</h1>
-<p>Post your Happy Tail story below and learn about other successful adoptions!</p>
+<div class="alert-secondary rounded p-5 mb-5">
+    <h1>Tell us about your successful adoptions!</h1>
+    <p>Post your Happy Tail story below and learn about other successful adoptions!</p>
 
-<form method="post" class="col-md-8 my-5">
-    <div class="form-group">
-        <label class="control-label sr-only">Title</label>
-        <input type="text" asp-for="Title" class="form-control form-control-lg" placeholder="Pet's name" required>
-    </div>
-    <div class="form-group">
-        <label class="control-label sr-only">Pet adoption story</label>
-        <textarea type="text" asp-for="Text" class="form-control form-control-lg" rows="8" maxlength="5000" placeholder="Share your pet adoption story..." required></textarea>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label class="control-label sr-only">Name</label>
-            <input type="text" asp-for="UserName.Name" class="form-control form-control-lg" placeholder="Full name or username" required>
+    <form method="post" class="col-xl-8 my-5">
+        <div class="form-group">
+            <label class="control-label sr-only">Title</label>
+            <input type="text" asp-for="Title" class="form-control form-control-lg" placeholder="Pet's name" required>
         </div>
-        <div class="form-group col-md-6">
-            <label class="control-label sr-only">Today's Date</label>
-            <input type="date" asp-for="Date" class="form-control form-control-lg" placeholder="Date" required>
+        <div class="form-group">
+            <label class="control-label sr-only">Pet adoption story</label>
+            <textarea type="text" asp-for="Text" class="form-control form-control-lg" rows="8" maxlength="5000" placeholder="Share your pet adoption story..." required></textarea>
         </div>
-    </div>
-    <div class="form-group mb-4">
-        <label class="control-label sr-only">Upload Photo</label>
-        <input type="file" asp-for="FileName" class="form-control-file">
-    </div>
-    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
-</form>
-
-
-<h1>Happy Tails</h1>
-<p>Learn more about our successful adoptions!</p>
-
-<div>
-    <h3>@Model.Title</h3>
-    <p>@Model.Text</p>
-    <div class="row">
-        <div class="col">Posted by: @Model.UserName.Name</div>
-        <div class="col">@Model.Date</div>
-    </div>
-    <p>@Model.FileName</p>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label class="control-label sr-only">Name</label>
+                <input type="text" asp-for="UserName.Name" class="form-control form-control-lg" placeholder="Your name" required>
+            </div>
+        </div>
+        <div class="form-group mb-4">
+            <label class="control-label sr-only">Upload Photo</label>
+            <input type="file" asp-for="FileName" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+    </form>
 </div>
+
+
+
+@if (Model != null)
+{
+    <h1>Happy Tails</h1>
+    <p>Learn more about our successful adoptions!</p>
+    <hr />
+    <div class="happy-tail">
+        <h3>@Model.Title</h3>
+        <p>@Model.FileName</p>
+        <p>@Model.Text</p>
+        <div class="row">
+            <div class="col">@Model.UserName.Name</div>
+            <div class="col">@Model.Date</div>
+        </div>
+    </div>
+}
