@@ -27,10 +27,6 @@ namespace SarasTreasures.Controllers
 
         public IActionResult HappyTails()
         {
-            //Stories model = new Stories();
-            //User userName = new User();
-            //model.UserName = userName;
-            //return View(model);
             return View();
         }
 
@@ -47,5 +43,18 @@ namespace SarasTreasures.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult AnimalQuiz()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AnimalQuiz(Quiz q)
+        {
+            q.CheckAnswers();
+            return View(q);
+        }
     }
 }
