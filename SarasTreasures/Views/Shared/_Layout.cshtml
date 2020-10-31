@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SarasTreasures</title>
+    <title>@ViewData["Title"] — S.A.R.A.'s Treasures</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">S.A.R.A's Treasures</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">S.A.R.A.'s Treasures</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,14 +38,14 @@
             </div>
         </nav>
     </header>
-    <div class="container mt-5">
+    <div class="container my-5">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted px-3">
+        <div class="container-fluid">
             <div class="row mb-4">
                 <div class="col-md-3">
                     <ul id="footer-nav" aria-label="footer vertical navigation">
@@ -53,6 +53,7 @@
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                         <li><a asp-area="" asp-controller="Rescue" asp-action="HappyTails">Happy Tails</a></li>
                         <li><a asp-area="" asp-controller="Rescue" asp-action="Resources">Resources</a></li>
+                        <li><a asp-area="" asp-controller="Rescue" asp-action="AnimalQuiz">Pet Adoption Quiz</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                     </ul>
                 </div>
@@ -63,7 +64,7 @@
                     Donate to S.A.R.A. today!
                 </div>
             </div>
-            <div class="text-center mb-3">
+            <div class="small text-center mb-3">
                 &copy; 2020 Shelter Animal Resource Alliance. All rights reserved.
             </div>
         </div>
