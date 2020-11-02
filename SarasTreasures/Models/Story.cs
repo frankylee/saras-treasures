@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SarasTreasures.Models
 {
-    public class Stories
+    public class Story
     {
         // modeled after Happy Tails on SARA's Treasures
         public string Title { get; set; }
