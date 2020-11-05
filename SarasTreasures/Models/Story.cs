@@ -4,6 +4,7 @@ namespace SarasTreasures.Models
     public class Story
     {
         // modeled after Happy Tails on SARA's Treasures
+        public int StoryID { get; set; }
         public string Title { get; set; }
         public User UserName { get; set; }
         public string Text { get; set; }

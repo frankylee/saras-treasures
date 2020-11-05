@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +12,14 @@ namespace SarasTreasures.Controllers
 {
     public class RescueController : Controller
     {
+        StoryContext context;
+
+        public RescueController(StoryContext c)
+        {
+            context = c;
+        }
+
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -25,16 +33,25 @@ namespace SarasTreasures.Controllers
         }
 
 
-        public IActionResult HappyTails()
+        public IActionResult HappyTail()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult HappyTails(Stories model)
+        public IActionResult HappyTail(Story model)
         {
             model.Date = DateTime.Now;
+            // store in database
+            context.HappyTails.Add(model);
+            context.SaveChanges();
             return View(model);
+        }
+
+        public IActionResult HappyTails()
+        {
+            var happyTails = context.HappyTails.Include(happyTails => happyTails.UserName).ToList();
+            return View(happyTails);
         }
 
 
