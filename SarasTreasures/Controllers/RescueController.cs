@@ -45,7 +45,7 @@ namespace SarasTreasures.Controllers
             // store in database
             context.HappyTails.Add(model);
             context.SaveChanges();
-            return View(model);
+            return Redirect("HappyTails");
         }
 
         public IActionResult HappyTails()

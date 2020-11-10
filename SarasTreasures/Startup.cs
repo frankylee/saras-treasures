@@ -26,7 +26,7 @@ namespace SarasTreasures
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<StoryContext>(options => options.UseSqlite(Configuration["Data:HappyTails:SQLite"]));
+            services.AddDbContext<StoryContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

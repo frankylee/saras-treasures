@@ -31,21 +31,3 @@
         <button type="submit" class="btn btn-lg btn-primary">Submit</button>
     </form>
 </div>
-
-
-
-@if (Model != null)
-{
-    <h1>Happy Tails</h1>
-    <p>Learn more about our successful adoptions!</p>
-    <hr />
-    <div class="happy-tail">
-        <h3>@Model.Title</h3>
-        <p>@Model.FileName</p>
-        <p>@Model.Text</p>
-        <div class="row">
-            <div class="col">@Model.UserName.Name</div>
-            <div class="col">@Model.Date</div>
-        </div>
-    </div>
-}
