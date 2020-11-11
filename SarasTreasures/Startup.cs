@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
+using System.Runtime.InteropServices;
 
 namespace SarasTreasures
 {
@@ -26,7 +27,10 @@ namespace SarasTreasures
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<StoryContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                services.AddDbContext<StoryContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
+            else
+                services.AddDbContext<StoryContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

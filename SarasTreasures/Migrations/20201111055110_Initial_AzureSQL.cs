@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SarasTreasures.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initial_AzureSQL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace SarasTreasures.Migrations
                 columns: table => new
                 {
                     UserID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -25,7 +25,7 @@ namespace SarasTreasures.Migrations
                 columns: table => new
                 {
                     StoryID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     UserNameUserID = table.Column<int>(nullable: true),
                     Text = table.Column<string>(nullable: true),
