@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
 using System.Runtime.InteropServices;
+using SarasTreasures.Repos;
 
 namespace SarasTreasures
 {
@@ -27,6 +28,9 @@ namespace SarasTreasures
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // Inject repositories into controller
+            services.AddTransient<IStoryRepository, StoryRepository>();  // <Repo interface, Repo class>
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<StoryContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else

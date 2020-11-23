@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
+using SarasTreasures.Repos;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,10 +14,12 @@ namespace SarasTreasures.Controllers
     public class RescueController : Controller
     {
         StoryContext context;
+        IStoryRepository repo;
 
-        public RescueController(StoryContext c)
+        public RescueController(StoryContext c, IStoryRepository r)
         {
             context = c;
+            repo = r;
         }
 
 
@@ -50,8 +53,9 @@ namespace SarasTreasures.Controllers
 
         public IActionResult HappyTails()
         {
-            var happyTails = context.HappyTails.Include(happyTails => happyTails.UserName).ToList();
-            return View(happyTails);
+            List<Story> stories = repo.Stories.ToList();
+            //var stories = context.HappyTails.Include(happyTails => happyTails.UserName).ToList();
+            return View(stories);
         }
 
 
