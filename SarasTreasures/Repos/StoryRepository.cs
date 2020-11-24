@@ -7,7 +7,7 @@ namespace SarasTreasures.Repos
 {
     public class StoryRepository : IStoryRepository
     {
-        // class variables
+        // instance variables
         private StoryContext context;
 
         // constructor
@@ -28,12 +28,16 @@ namespace SarasTreasures.Repos
 
         public void AddStory(Story story)
         {
-            throw new NotImplementedException();
+            // store in database
+            context.HappyTails.Add(story);
+            context.SaveChanges();
         }
 
         public Story GetStoryByTitle(string title)
         {
-            throw new NotImplementedException();
+            // find and return the first story with a matching title
+            Story story = context.HappyTails.First(s => s.Title == title);
+            return story;
         }
     }
 }
