@@ -13,12 +13,10 @@ namespace SarasTreasures.Controllers
 {
     public class RescueController : Controller
     {
-        StoryContext context;
         IStoryRepository repo;
 
-        public RescueController(StoryContext c, IStoryRepository r)
+        public RescueController(IStoryRepository r)
         {
-            context = c;
             repo = r;
         }
 
@@ -46,15 +44,13 @@ namespace SarasTreasures.Controllers
         {
             model.Date = DateTime.Now;
             // store in database
-            context.HappyTails.Add(model);
-            context.SaveChanges();
+            repo.AddStory(model);
             return Redirect("HappyTails");
         }
 
         public IActionResult HappyTails()
         {
-            List<Story> stories = repo.Stories.ToList();
-            //var stories = context.HappyTails.Include(happyTails => happyTails.UserName).ToList();
+            List<Story> stories = repo.Stories.OrderByDescending(s => s.StoryID).ToList();
             return View(stories);
         }
 
