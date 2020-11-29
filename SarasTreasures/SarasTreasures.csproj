@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Views\Donate\" />
     <Folder Include="Views\Rescue\" />
+    <Folder Include="Repos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Tests\bin\Debug\netcoreapp3.1\Tests.deps.json" />
