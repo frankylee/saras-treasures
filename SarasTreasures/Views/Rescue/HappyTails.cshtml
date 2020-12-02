@@ -8,6 +8,18 @@
 <h1>Happy Tails</h1>
 <p>Learn more about our successful adoptions or <a asp-controller="Rescue" asp-action="HappyTail">share your story!</a></p>
 
+<section>
+    <form method="post" class="col-xl-8 my-5">
+        <div class="form-group">
+            <label for="Search" class="control-label">Filter by user or date submitted:</label>
+            <input name="Search" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success mr-4">Submit</button>
+            <a asp-action="HappyTails" class="text-secondary">Reset</a>
+        </div>
+    </form>
+</section>
 
 @foreach (Story happyTail in Model)
 {
@@ -18,7 +30,7 @@
         <p>@happyTail.Text</p>
         <div class="row">
             <div class="col">@happyTail.UserName.Name</div>
-            <div class="col">@happyTail.Date</div>
+            <div class="col text-right">@happyTail.Date</div>
         </div>
     </div>
 }
