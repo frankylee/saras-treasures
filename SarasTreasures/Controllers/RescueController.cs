@@ -54,6 +54,41 @@ namespace SarasTreasures.Controllers
             return View(stories);
         }
 
+        [HttpPost]
+        public IActionResult HappyTails(string search)
+        {
+            List<Story> results = null;
+
+            if (search != null)
+            {
+                // search for user
+                results = (from s in repo.Stories
+                           where s.UserName.Name.Contains(search)
+                           select s).ToList();
+                // if not user, search date
+                if (results.Count == 0)
+                    results = (from s in repo.Stories
+                               .AsEnumerable()
+                               where s.Date.ToString().Contains(search)
+                               select s).ToList();
+                // if not date, search title
+                if (results.Count == 0)
+                    results = (from s in repo.Stories
+                              where s.Title.Contains(search)
+                              select s).ToList();
+                // if not title, search story
+                if (results.Count == 0)
+                    results = (from s in repo.Stories
+                               where s.Text.Contains(search)
+                               select s).ToList();
+            }
+            else
+            {
+                results = repo.Stories.ToList();
+            }
+            return View(results);
+        }
+
 
         public IActionResult Resources()
         {
