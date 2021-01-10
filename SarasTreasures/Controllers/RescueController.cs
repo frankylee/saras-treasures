@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
-using SarasTreasures.Repos;
+using SarasTreasures.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,10 +42,15 @@ namespace SarasTreasures.Controllers
         [HttpPost]
         public IActionResult HappyTail(Story model)
         {
-            model.Date = DateTime.Now;
-            // store in database
-            repo.AddStory(model);
-            return Redirect("HappyTails");
+            // if valid, store in database
+            if (ModelState.IsValid)
+            {
+                // add date and time of submission
+                model.Date = DateTime.Now;
+                repo.AddStory(model);
+                return Redirect("HappyTails");
+            }
+            return View(model);
         }
 
         public IActionResult HappyTails()
@@ -63,7 +68,7 @@ namespace SarasTreasures.Controllers
             {
                 // search for user
                 results = (from s in repo.Stories
-                           where s.UserName.Name.Contains(search)
+                           where s.User.Username.Contains(search)
                            select s).ToList();
                 // if not user, search date
                 if (results.Count == 0)

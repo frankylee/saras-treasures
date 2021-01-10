@@ -2,7 +2,7 @@
 using System.Linq;
 using SarasTreasures.Models;
 
-namespace SarasTreasures.Repos
+namespace SarasTreasures.Data
 {
     public interface IStoryRepository
     {

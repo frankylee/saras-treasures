@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SarasTreasures.Models;
 
-namespace SarasTreasures.Repos
+namespace SarasTreasures.Data
 {
     public class FakeStoryRepository : IStoryRepository
     {

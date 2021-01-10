@@ -2,7 +2,7 @@
 using System.Linq;
 using SarasTreasures.Controllers;
 using SarasTreasures.Models;
-using SarasTreasures.Repos;
+using SarasTreasures.Data;
 using Xunit;
 
 namespace Tests
@@ -23,9 +23,9 @@ namespace Tests
             story = new Story()
             {
                 Title = "Pineapple",
-                UserName = new User() { Name = "Suzie Q" },
+                User = new User() { Username = "Suzie Q" },
                 Text = "Lorem ipsum dolor sit amet",
-                FileName = "30721.jpg",
+                Filename = "30721.jpg",
             };
         }
 

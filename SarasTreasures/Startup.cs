@@ -9,9 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using SarasTreasures.Models;
 using System.Runtime.InteropServices;
-using SarasTreasures.Repos;
+using SarasTreasures.Data;
 
 namespace SarasTreasures
 {
@@ -32,13 +31,13 @@ namespace SarasTreasures
             services.AddTransient<IStoryRepository, StoryRepository>();  // <Repo interface, Repo class>
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                services.AddDbContext<StoryContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
+                services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else
-                services.AddDbContext<StoryContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
+                services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StoryContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SarasTreasuresContext context)
         {
             if (env.IsDevelopment())
             {
