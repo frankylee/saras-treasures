@@ -13,7 +13,7 @@ test-results/
 
 # database connection
 *[Ss]ettings.json
-*appsettings.json
+*[Ss]ettings.Development.json
 
 # Mac bundle stuff
 *.dmg
