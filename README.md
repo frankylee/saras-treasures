@@ -1,4 +1,4 @@
-# S.A.R.A.'s Teasures
+# S.A.R.A.'s Treasures
 ASP.NET full website redesign for [local non-profit](https://sarastreasures.org) in Eugene, OR.
 
 ## Lab 1: Validation of User Input
