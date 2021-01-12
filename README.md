@@ -14,5 +14,8 @@ To make the validation useful, in addition to adding validation annotations to m
 - Add at least a validation summary tag helper to the views where data entry is done.
 - Add code to check ModelState in the controller methods that the data entry forms post to.
 
+### Notes:
+- Making a minor change to ReadMe file to create a new PR.
+
 ---
 ###### CS296N Web Development 2: ASP.NET W21
