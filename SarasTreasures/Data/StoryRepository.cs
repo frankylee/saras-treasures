@@ -3,15 +3,15 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
 
-namespace SarasTreasures.Repos
+namespace SarasTreasures.Data
 {
     public class StoryRepository : IStoryRepository
     {
         // instance variables
-        private StoryContext context;
+        private SarasTreasuresContext context;
 
         // constructor
-        public StoryRepository(StoryContext c)
+        public StoryRepository(SarasTreasuresContext c)
         {
             context = c;
         }
@@ -22,21 +22,21 @@ namespace SarasTreasures.Repos
             get
             {   // Get all Story objects in the Stories(HappyTails) DBContext
                 // and include the User object in each Story
-                return context.HappyTails.Include(story => story.UserName);
+                return context.Story.Include(story => story.User);
             }
         } 
 
         public void AddStory(Story story)
         {
             // store in database
-            context.HappyTails.Add(story);
+            context.Story.Add(story);
             context.SaveChanges();
         }
 
         public Story GetStoryByTitle(string title)
         {
             // find and return the first story with a matching title
-            Story story = context.HappyTails.First(s => s.Title == title);
+            Story story = context.Story.First(s => s.Title == title);
             return story;
         }
     }

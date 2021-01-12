@@ -1,14 +1,27 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace SarasTreasures.Models
 {
     public class Story
     {
-        // modeled after Happy Tails on SARA's Treasures
+        [Key]
         public int StoryID { get; set; }
+
+        [Required(ErrorMessage = "Title field cannot be empty.")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "Title must be 3-60 characters.")]
         public string Title { get; set; }
-        public User UserName { get; set; }
+
+        [Required(ErrorMessage = "Story field cannot be empty.")]
+        [StringLength(8000, MinimumLength = 10, ErrorMessage = "Story must be at least 10 characters.")]
         public string Text { get; set; }
+
+        public string Filename { get; set; }
+
         public DateTime Date { get; set; }
-        public string FileName { get; set; }
+
+        // foreign key
+        public int UserID { get; set; }  
+        public User User { get; set; }
     }
 }
