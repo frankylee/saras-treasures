@@ -16,8 +16,6 @@
     <Content Remove="Tests\bin\Debug\netcoreapp3.1\Tests.runtimeconfig.json" />
     <Content Remove="Tests\bin\Debug\netcoreapp3.1\Tests.runtimeconfig.dev.json" />
     <Content Remove="Tests\bin\Debug\netcoreapp3.1\Tests.deps.json" />
-    <Content Remove="appsettings.json" />
-    <Content Remove="appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
