@@ -68,7 +68,7 @@ namespace SarasTreasures.Controllers
             {
                 // search for user
                 results = (from s in repo.Stories
-                           where s.User.Username.Contains(search)
+                           where s.User.UserName.Contains(search)
                            select s).ToList();
                 // if not user, search date
                 if (results.Count == 0)
