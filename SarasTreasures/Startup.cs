@@ -40,7 +40,7 @@ namespace SarasTreasures
             // Add Identity service with default password options
             services.AddIdentity<AppUser, IdentityRole>(options => {
                 // Require unique email address for user
-                options.User.RequireUniqueEmail = true;
+                //options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<SarasTreasuresContext>()
                 .AddDefaultTokenProviders();
         }

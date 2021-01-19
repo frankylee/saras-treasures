@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
 using SarasTreasures.Data;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace SarasTreasures.Controllers
 {
     public class RescueController : Controller
@@ -45,6 +43,8 @@ namespace SarasTreasures.Controllers
             // if valid, store in database
             if (ModelState.IsValid)
             {
+                // TODO: add logged in user
+                //model.User.UserName = User.Identity.Name;
                 // add date and time of submission
                 model.Date = DateTime.Now;
                 repo.AddStory(model);
