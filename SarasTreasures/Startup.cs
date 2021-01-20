@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using SarasTreasures.Data;
+using Microsoft.AspNetCore.Identity;
+using SarasTreasures.Models;
 
 namespace SarasTreasures
 {
@@ -34,6 +36,13 @@ namespace SarasTreasures
                 services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
             else
                 services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlite(Configuration["ConnectionString:SQLite"]));
+
+            // Add Identity service with default password options
+            services.AddIdentity<AppUser, IdentityRole>(options => {
+                // Require unique email address for user
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<SarasTreasuresContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,7 @@ namespace SarasTreasures
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

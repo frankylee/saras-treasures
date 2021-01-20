@@ -23,7 +23,7 @@ namespace Tests
             story = new Story()
             {
                 Title = "Pineapple",
-                User = new User() { Username = "Suzie Q" },
+                User = new AppUser() { UserName = "Suzie Q" },
                 Text = "Lorem ipsum dolor sit amet",
                 Filename = "30721.jpg",
             };

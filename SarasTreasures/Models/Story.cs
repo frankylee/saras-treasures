@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SarasTreasures.Models
 {
@@ -20,8 +21,8 @@ namespace SarasTreasures.Models
 
         public DateTime Date { get; set; }
 
-        // foreign key
-        public int UserID { get; set; }  
-        public User User { get; set; }
+        //// foreign key
+        //public string UserId { get; set; }
+        public AppUser User { get; set; }
     }
 }
