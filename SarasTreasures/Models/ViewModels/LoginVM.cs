@@ -7,7 +7,7 @@ namespace SarasTreasures.Models
     {
         [Required(ErrorMessage = "Please enter a username.")]
         [StringLength(255)]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Please enter a password.")]
         [StringLength(255)]

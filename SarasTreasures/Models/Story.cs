@@ -21,8 +21,6 @@ namespace SarasTreasures.Models
 
         public DateTime Date { get; set; }
 
-        //// foreign key
-        //public string UserId { get; set; }
         public AppUser User { get; set; }
     }
 }

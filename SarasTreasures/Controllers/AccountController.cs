@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SarasTreasures.Models;
@@ -20,9 +21,12 @@ namespace SarasTreasures.Controllers
             signInManager = signInMngr;
         }
 
-        // GET: /<controller>/
-        public IActionResult Index()
+
+        [Authorize]
+        public async Task<IActionResult> IndexAsync()
         {
+            AppUser user = await userManager.GetUserAsync(User);
+            ViewBag.User = user;
             return View();
         }
 
@@ -31,12 +35,18 @@ namespace SarasTreasures.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM model)
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Username };
+                var user = new AppUser {
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email
+                };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -54,55 +64,21 @@ namespace SarasTreasures.Controllers
             return View(model);
         }
 
+
         //[HttpPost]
-        //public async Task<IActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new Bookstore.Models.User
-        //        {
-        //            UserName = model.Username,
-        //            Firstname = model.Firstname,
-        //            Lastname = model.Lastname,
-        //            Email = model.Email
-        //        };
-        //        var result = await userManager.CreateAsync(user, model.Password);
-
-        //        if (result.Succeeded)
-        //        {
-        //            await signInManager.SignInAsync(user, isPersistent: false);
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-        //            foreach (var error in result.Errors)
-        //            {
-        //                ModelState.AddModelError("", error.Description);
-        //            }
-        //        }
-        //    }
-        //    return View(model);
-        //}
-
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> LogOut()
-        //{
-        //    await signInManager.SignOutAsync();
-        //    return RedirectToAction("Index", "Home");
-        //}
 
-        //[HttpGet]
-        //public IActionResult LogIn(string returnURL = "")
-        //{
-        //    var model = new LoginViewModel { ReturnUrl = returnURL };
-        //    return View(model);
-        //}
+        [HttpGet]
+        public IActionResult LogIn(string returnURL = "")
+        {
+            var model = new LoginVM { ReturnUrl = returnURL };
+            return View(model);
+        }
 
         [HttpPost]
         public async Task<IActionResult> LogIn(LoginVM model)
@@ -110,13 +86,15 @@ namespace SarasTreasures.Controllers
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(
-                    model.Username, model.Password, isPersistent: model.RememberMe,
-                    lockoutOnFailure: false);
+                    model.UserName,
+                    model.Password,
+                    isPersistent: model.RememberMe,
+                    lockoutOnFailure: false
+                );
 
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) &&
-                        Url.IsLocalUrl(model.ReturnUrl))
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
                     }
@@ -130,9 +108,10 @@ namespace SarasTreasures.Controllers
             return View(model);
         }
 
-        public ViewResult AccessDenied()
-        {
-            return View();
-        }
+
+        //public ViewResult AccessDenied()
+        //{
+        //    return View();
+        //}
     }
 }

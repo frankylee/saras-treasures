@@ -4,6 +4,7 @@ using SarasTreasures.Controllers;
 using SarasTreasures.Models;
 using SarasTreasures.Data;
 using Xunit;
+using Microsoft.AspNetCore.Identity;
 
 namespace Tests
 {
@@ -12,6 +13,8 @@ namespace Tests
         // instance variables
         private FakeStoryRepository fakeRepo;
         private RescueController controller;
+        private UserManager<AppUser> userManager;
+        //private SignInManager<AppUser> signInManager;
         private Story story;
 
 
@@ -19,11 +22,11 @@ namespace Tests
         public StoryTests()
         {
             fakeRepo = new FakeStoryRepository();
-            controller = new RescueController(fakeRepo);
+            controller = new RescueController(userManager, fakeRepo);
             story = new Story()
             {
                 Title = "Pineapple",
-                User = new AppUser() { UserName = "Suzie Q" },
+                //User = new AppUser() { UserName = "Suzie Q" },
                 Text = "Lorem ipsum dolor sit amet",
                 Filename = "30721.jpg",
             };

@@ -20,7 +20,11 @@ namespace SarasTreasures
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    // Allows creation of roleManager service in the Configuration of Startup
+                    webBuilder.UseStartup<Startup>()
+                    .UseDefaultServiceProvider(
+                        options => options.ValidateScopes = false
+                    );
                 });
     }
 }

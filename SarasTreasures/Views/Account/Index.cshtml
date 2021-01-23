@@ -1,4 +1,23 @@
-﻿@{
+﻿@model AppUser
+@{
+    ViewBag.Title = "User Profile";
 }
 
-<h1>Account page</h1>
+<h1>Hello, @ViewBag.User.FirstName!</h1>
+
+<h2>Account details</h2>
+
+<div class="row">
+    <div class="col-auto text-right">
+        Username:<br />
+        First name:<br />
+        Last name:<br />
+        Email address:<br />
+    </div>
+    <div class="col-auto">
+        @ViewBag.User.UserName<br />
+        @ViewBag.User.FirstName<br />
+        @ViewBag.User.LastName<br />
+        @ViewBag.User.Email<br />
+    </div>
+</div>

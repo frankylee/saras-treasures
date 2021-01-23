@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using SarasTreasures.Models;
 
-namespace SarasTreasures.Data
+namespace SarasTreasures.Models
 {
     public interface IStoryRepository
     {

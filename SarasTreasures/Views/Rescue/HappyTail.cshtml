@@ -21,20 +21,14 @@
         <textarea type="text" asp-for="Text" class="form-control form-control-lg" rows="8" placeholder="Share your pet adoption story..."></textarea>
         <span class="text-danger small" asp-validation-for="Text"></span>
     </div>
-    <div class="row justify-content-between">
-        @*<div class="form-group col-md-6">
-            <label class="control-label sr-only">Name</label>
-            <input type="text" asp-for="User.UserName" class="form-control form-control-lg" placeholder="Username">
-            <span class="text-danger small" asp-validation-for="User.UserName"></span>
-        </div>*@
-        
-        <div class="form-group col col-lg-auto mb-4">
+    <div class="row justify-content-between align-items-center">
+        <div class="form-group col col-lg-auto mb-0">
             <label class="control-label sr-only">Upload Photo</label>
             <input type="file" asp-for="Filename" class="form-control-file">
             <span class="text-danger small" asp-validation-for="Filename"></span>
         </div>
-    </div>
-    <div class="text-right">
-        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+        </div>
     </div>
 </form>

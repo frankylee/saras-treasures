@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SarasTreasures.Models;
-using SarasTreasures.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SarasTreasures.Controllers
 {
     public class RescueController : Controller
     {
+        private UserManager<AppUser> userManager;
         IStoryRepository repo;
 
-        public RescueController(IStoryRepository r)
+        public RescueController(UserManager<AppUser> userMngr, IStoryRepository r)
         {
+            userManager = userMngr;
             repo = r;
         }
 
@@ -31,23 +34,26 @@ namespace SarasTreasures.Controllers
             return View();
         }
 
-
+        [Authorize]
         public IActionResult HappyTail()
         {
             return View();
         }
 
+        [Authorize]  // Is this necessary if the HttpGet must Authorize?
         [HttpPost]
-        public IActionResult HappyTail(Story model)
+        public async Task<IActionResult> HappyTail(Story model)
         {
-            // if valid, store in database
+            // if model is valid, store in database
             if (ModelState.IsValid)
             {
-                // TODO: add logged in user
-                //model.User.UserName = User.Identity.Name;
-                // add date and time of submission
+                // Add logged in user to the model
+                model.User = await userManager.GetUserAsync(User);
+                // Add date and time of submission
                 model.Date = DateTime.Now;
+                // Add model to the database
                 repo.AddStory(model);
+                // Redirect user to the HappyTails view
                 return Redirect("HappyTails");
             }
             return View(model);
@@ -63,8 +69,8 @@ namespace SarasTreasures.Controllers
         public IActionResult HappyTails(string search)
         {
             List<Story> results = null;
-
-            if (search != null)
+            // Check if search is empty or whitespace
+            if (search != null && search.Trim() != "")
             {
                 // search for user
                 results = (from s in repo.Stories

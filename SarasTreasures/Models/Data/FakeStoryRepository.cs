@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SarasTreasures.Models;
 
-namespace SarasTreasures.Data
+namespace SarasTreasures.Models
 {
     public class FakeStoryRepository : IStoryRepository
     {
