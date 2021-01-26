@@ -111,15 +111,54 @@ namespace SarasTreasures.Models
 
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
-            UserManager<AppUser> userManager =
-                serviceProvider.GetRequiredService<UserManager<AppUser>>();
-            RoleManager<IdentityRole> roleManager =
-                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            UserManager<AppUser> userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+            List<string> roleNames = new List<string>() { "Admin", "User" };
             string username = "admin";
             string password = "Secret1!";
-            List<string> roleNames = new List<string>(){ "Admin", "User" };
-
+            //Dictionary<AppUser, string> users = new Dictionary<AppUser, string>(){
+            //    {
+            //        new AppUser {
+            //            UserName = "admin",
+            //            FirstName = "Sara",
+            //            LastName = "Treasure",
+            //            Email = "hello@sarastreasures.com"
+            //        },
+            //        "Secret1!"
+            //    },
+            //    {
+            //        new AppUser {
+            //            UserName = "mrs.rosenblum",
+            //            FirstName = "Sally",
+            //            LastName = "Rosenblum",
+            //            Email = "srosenblum@aol.com",
+            //            RoleNames = { "User" }
+            //        },
+            //        "Secret1!"
+            //    },
+            //    {
+            //        new AppUser {
+            //            UserName = "paula_parrot",
+            //            FirstName = "Paula",
+            //            LastName = "Parrot",
+            //            Email = "paula_parrot@yahoo.com",
+            //            RoleNames = { "User" }
+            //        },
+            //        "Secret1!"
+            //    },
+            //    {
+            //        new AppUser {
+            //            UserName = "margotmerlot",
+            //            FirstName = "Margot",
+            //            LastName = "Merlot",
+            //            Email = "winelover387@hotmail.com",
+            //            RoleNames = { "User" }
+            //        },
+            //        "Secret1!"
+            //    },
+            //};
+           
             foreach (string roleName in roleNames)
             {
                 // if role doesn't exist, create it
@@ -133,7 +172,7 @@ namespace SarasTreasures.Models
             if (await userManager.FindByNameAsync(username) == null)
             {
                 AppUser user = new AppUser {
-                    UserName = username,
+                    UserName = "admin",
                     FirstName = "Sara",
                     LastName = "Treasure",
                     Email = "hello@sarastreasures.com"

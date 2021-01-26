@@ -10,6 +10,7 @@
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Models\Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Tests\bin\Debug\netcoreapp3.1\Tests.deps.json" />
