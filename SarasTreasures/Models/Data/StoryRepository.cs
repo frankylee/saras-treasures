@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using SarasTreasures.Models;
 
-namespace SarasTreasures.Data
+namespace SarasTreasures.Models
 {
     public class StoryRepository : IStoryRepository
     {

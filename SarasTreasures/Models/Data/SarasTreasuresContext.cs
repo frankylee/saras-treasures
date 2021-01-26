@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SarasTreasures.Models;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace SarasTreasures.Data
+namespace SarasTreasures.Models
 {
     public class SarasTreasuresContext : IdentityDbContext<AppUser>
     {
@@ -11,7 +14,6 @@ namespace SarasTreasures.Data
 
         // tables
         public DbSet<Story> Story { get; set; }
-        //public DbSet<User> User { get; set; }
 
 
         // seed data upon database creation
@@ -19,7 +21,7 @@ namespace SarasTreasures.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<AppUser>().HasData(
+            //modelBuilder.Entity<SarasTreasures.Models.AppUser>().HasData(
             //    new AppUser
             //    {
             //        UserName = "mrs.rosenblum",
@@ -51,6 +53,7 @@ namespace SarasTreasures.Data
             //    .WithMany(u => u.UserId)
             //    .HasForeignKey(s => s.UserId);
             //.OwnsOne(u => u.User)
+
             //modelBuilder.Entity<Story>().HasData(
             //    new Story
             //    {
@@ -105,5 +108,43 @@ namespace SarasTreasures.Data
             //    }
             //);
         }
+
+        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        {
+            UserManager<AppUser> userManager =
+                serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole> roleManager =
+                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            string username = "admin";
+            string password = "Secret1!";
+            List<string> roleNames = new List<string>(){ "Admin", "User" };
+
+            foreach (string roleName in roleNames)
+            {
+                // if role doesn't exist, create it
+                if (await roleManager.FindByNameAsync(roleName) == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            // if username doesn't exist, create it and add to role
+            if (await userManager.FindByNameAsync(username) == null)
+            {
+                AppUser user = new AppUser {
+                    UserName = username,
+                    FirstName = "Sara",
+                    LastName = "Treasure",
+                    Email = "hello@sarastreasures.com"
+                };
+                var result = await userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, roleNames[0]);
+                }
+            }
+        }
+
     }
 }

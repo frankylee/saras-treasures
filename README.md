@@ -26,5 +26,11 @@ Your user model will need to inherit from the IdentityUser class. Make the follo
 
 Add a migration and update your database. Confirm that the identity tables have been added to your database correctly.
 
+## Lab 3: Authentication
+Add Authentication code to your lab web site for each of these features:
+  - Registration
+  - Login
+  - Logout
+  - Use the currently logged in user in any place where a user previously needed to enter their name.
 ---
 ###### CS296N Web Development 2: ASP.NET W21

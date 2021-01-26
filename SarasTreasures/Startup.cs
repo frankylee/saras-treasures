@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
-using SarasTreasures.Data;
 using Microsoft.AspNetCore.Identity;
 using SarasTreasures.Models;
 
@@ -73,9 +72,15 @@ namespace SarasTreasures
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // Call async method to Seed Roles & Users from the DbContext
+            SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
+
+            // Create a role manager and pass it to SeedData
+            RoleManager<IdentityRole> roleManager = app.ApplicationServices
+                .GetRequiredService<RoleManager<IdentityRole>>();
             // Use SeedData if database is empty.
-            SeedData.Seed(context);
-            
+            SeedData.Seed(context, roleManager);
+
         }
     }
 }
