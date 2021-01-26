@@ -32,5 +32,14 @@ Add Authentication code to your lab web site for each of these features:
   - Login
   - Logout
   - Use the currently logged in user in any place where a user previously needed to enter their name.
+
+## Lab 4: Authorization
+You will add all the same Authorization features to your web site that your instructor added to the example web site:
+  - Two roles of your choice.
+    - One for all registered users.
+    - Another for administrators.
+  - Restrict some part of the web site to only be accessed by registered users.
+  - Add a page for user and role management.
+  - Restrict access to the management page to administrators.
 ---
 ###### CS296N Web Development 2: ASP.NET W21
