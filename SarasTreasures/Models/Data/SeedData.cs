@@ -15,6 +15,10 @@ namespace SarasTreasures.Models
         {
             // NOTE: SeedData works on local using SQLite but does not work on Azure with SQLServer
 
+            // Seed user roles on startup --- moved to DbContext
+            //var result = roleManager.CreateAsync(new IdentityRole("User")).Result;
+            //result = roleManager.CreateAsync(new IdentityRole("Admin")).Result;
+
             // Populate data on startup (empty database only)
             if (!context.Story.Any())
             {
