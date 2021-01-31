@@ -109,9 +109,9 @@ namespace SarasTreasures.Controllers
         }
 
 
-        //public ViewResult AccessDenied()
-        //{
-        //    return View();
-        //}
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

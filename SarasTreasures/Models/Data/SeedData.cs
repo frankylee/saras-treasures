@@ -11,7 +11,9 @@ namespace SarasTreasures.Models
 {
     public class SeedData
     {
-        public static void Seed(SarasTreasuresContext context, RoleManager<IdentityRole> roleManager)
+        public static void Seed(SarasTreasuresContext context,
+                                UserManager<AppUser> userManager,
+                                RoleManager<IdentityRole> roleManager)
         {
             // NOTE: SeedData works on local using SQLite but does not work on Azure with SQLServer
 

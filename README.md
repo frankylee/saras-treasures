@@ -41,5 +41,12 @@ You will add all the same Authorization features to your web site that your inst
   - Restrict some part of the web site to only be accessed by registered users.
   - Add a page for user and role management.
   - Restrict access to the management page to administrators.
+  - Add a page for user and role management. The operations on this page will be:
+    - Delete user
+    - Add to Admin
+    - Remove from Admin
+    - Delete role
+  - Restrict access to the management page to administrators.
+    - You will need to seed the database with a user who is in the Admin role in order to be able to access the management page for the first time.
 ---
 ###### CS296N Web Development 2: ASP.NET W21
