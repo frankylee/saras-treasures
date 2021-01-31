@@ -6,7 +6,7 @@
 <h1 class="mb-2">Manage Users</h1>
 <h5 class="mt-2"><a asp-action="Add">Add a User</a></h5>
 
-@if (TempData["message"] != null || TempData["message"] != "")
+@if (TempData["message"] != null)
 {
     <div class="text-danger my-4">
         @TempData["message"]
