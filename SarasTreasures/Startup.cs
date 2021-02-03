@@ -78,8 +78,9 @@ namespace SarasTreasures
             // Create a role manager and pass it to SeedData
             RoleManager<IdentityRole> roleManager = app.ApplicationServices
                 .GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = app.ApplicationServices.GetRequiredService<UserManager<AppUser>>();
             // Use SeedData if database is empty.
-            SeedData.Seed(context, roleManager);
+            SeedData.Seed(context, userManager, roleManager);
 
         }
     }

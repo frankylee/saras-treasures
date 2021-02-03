@@ -11,9 +11,15 @@ namespace SarasTreasures.Models
 {
     public class SeedData
     {
-        public static void Seed(SarasTreasuresContext context, RoleManager<IdentityRole> roleManager)
+        public static void Seed(SarasTreasuresContext context,
+                                UserManager<AppUser> userManager,
+                                RoleManager<IdentityRole> roleManager)
         {
             // NOTE: SeedData works on local using SQLite but does not work on Azure with SQLServer
+
+            // Seed user roles on startup --- moved to DbContext
+            //var result = roleManager.CreateAsync(new IdentityRole("User")).Result;
+            //result = roleManager.CreateAsync(new IdentityRole("Admin")).Result;
 
             // Populate data on startup (empty database only)
             if (!context.Story.Any())
@@ -25,30 +31,38 @@ namespace SarasTreasures.Models
                     FirstName = "Sally",
                     LastName = "Rosenblum",
                     Email = "srosenblum@aol.com",
-                    //RoleNames = { "User" }
+                    RoleNames = { "User" }
                 };
+                context.Users.Add(user1);
+                context.SaveChanges();
+
                 AppUser user2 = new AppUser
                 {
                     UserName = "paula_parrot",
                     FirstName = "Paula",
                     LastName = "Parrot",
                     Email = "paula_parrot@yahoo.com",
-                    //RoleNames = { "User" }
+                    RoleNames = { "User" }
                 };
+                context.Users.Add(user2);
+                context.SaveChanges();
+
                 AppUser user3 = new AppUser
                 {
                     UserName = "margotmerlot",
                     FirstName = "Margot",
                     LastName = "Merlot",
                     Email = "winelover387@hotmail.com",
-                    //RoleNames = { "User" }
+                    RoleNames = { "User" }
                 };
-
-                // Add users to the database
-                context.Users.Add(user1);
-                context.Users.Add(user2);
                 context.Users.Add(user3);
                 context.SaveChanges();
+
+                // Add users to the database
+                //context.Users.Add(user1);
+                //context.Users.Add(user2);
+                //context.Users.Add(user3);
+                //context.SaveChanges();
 
 
                 // Create and add stories to the database

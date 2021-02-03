@@ -74,7 +74,7 @@ namespace SarasTreasures.Controllers
 
 
         [HttpGet]
-        public IActionResult LogIn(string returnURL = "")
+        public IActionResult LogIn(string returnURL) //= "")
         {
             var model = new LoginVM { ReturnUrl = returnURL };
             return View(model);
@@ -109,9 +109,9 @@ namespace SarasTreasures.Controllers
         }
 
 
-        //public ViewResult AccessDenied()
-        //{
-        //    return View();
-        //}
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

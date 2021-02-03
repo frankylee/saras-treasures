@@ -44,15 +44,25 @@
 
                         @if (signInManager.IsSignedIn(User))
                         {
-                            // signed-in user - Log Out button and username
+                            // admin user - link to admin page
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Admin" asp-area="">
+                                        <span class="fas fa-cog"></span>&nbsp;Admin
+                                    </a>
+                                </li>
+                            }
+                            // signed-in user - profile and logout pages
                             <li class="nav-item">
-                                <a asp-action="LogOut" asp-controller="Account" asp-area="" class="nav-link">
-                                    <span class="text-dark">Logout</span>
+                                <a class="nav-link" asp-action="Index" asp-controller="Account" asp-area="">
+                                    @*<span class="text-dark">@User.Identity.Name</span>*@
+                                    <span class="fas fa-user"></span>&nbsp;Account
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a asp-action="Index" asp-controller="Account" asp-area="" class="nav-link">
-                                    <span class="text-dark">@User.Identity.Name</span>
+                                <a class="nav-link" asp-action="LogOut" asp-controller="Account" asp-area="">
+                                    <span class="fas fa-sign-out"></span>&nbsp;Logout
                                 </a>
                             </li>
                         }
@@ -60,23 +70,14 @@
                         {
                             // anonymous user - Register link and Log In button
                             <li class="nav-item">
-                                <a asp-action="Register" asp-controller="Account"
-                                   asp-area="" class="nav-link">
-                                    <span class="fas fa-edit"></span>&nbsp;Register
+                                <a class="nav-link" asp-action="Register" asp-controller="Account" asp-area="">
+                                    <span class="fas fa-user-plus"></span>&nbsp;Register
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a asp-action="Login" asp-controller="Account"
-                                   asp-area="" class="btn btn-outline-secondary">Log In</a>
+                                <a class="nav-link" asp-action="Login" asp-controller="Account" asp-area="">Log In</a>
                             </li>
                         }
-                        @* Admin area links *@
-                        @*<li class="nav-item @Nav.Active("Admin", current)">*@
-                        @*<li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Book" asp-area="Admin">
-                                <span class="fas fa-cog"></span>&nbsp;Admin
-                            </a>
-                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -104,8 +105,13 @@
                 <div class="col-md">
                     S.A.R.A. cannot accept stray or owner released animals from the public.
                 </div>
-                <div class="col-md">
-                    Donate to S.A.R.A. today!
+                <div class="col-md text-center">
+                    <p class="h5">
+                        Donate to S.A.R.A. today!
+                    </p>
+                    <div class="">
+                        <a href="#" class="btn btn-success px-3">DONATE</a>
+                    </div>
                 </div>
             </div>
             <div class="small text-center mb-3">

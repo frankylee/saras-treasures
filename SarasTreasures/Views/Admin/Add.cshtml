@@ -1,13 +1,12 @@
 ﻿@model RegisterVM
-
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Add User";
 }
 
-<h1>Register</h1>
+<h2>Add User</h2>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form method="post" asp-action="Register">
+<form method="post" asp-action="Add">
     <div class="form-group row">
         <div class="col-sm-2">
             <label>Username:</label>
@@ -73,12 +72,7 @@
     </div>
     <div class="row">
         <div class="offset-2 col-sm-4">
-            <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="offset-2 col-sm-4">
-            Already registered? <a asp-action="LogIn">Log In</a>
+            <button type="submit" class="btn btn-primary">Add User</button>
         </div>
     </div>
 </form>
