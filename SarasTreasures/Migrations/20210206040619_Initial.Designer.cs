@@ -10,7 +10,7 @@ using SarasTreasures.Models;
 namespace SarasTreasures.Migrations
 {
     [DbContext(typeof(SarasTreasuresContext))]
-    [Migration("20210206011151_Initial")]
+    [Migration("20210206040619_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -243,9 +243,14 @@ namespace SarasTreasures.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("CommentID");
 
                     b.HasIndex("StoryID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comment");
                 });
@@ -339,6 +344,10 @@ namespace SarasTreasures.Migrations
                     b.HasOne("SarasTreasures.Models.Story", null)
                         .WithMany("Comments")
                         .HasForeignKey("StoryID");
+
+                    b.HasOne("SarasTreasures.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SarasTreasures.Models.Story", b =>

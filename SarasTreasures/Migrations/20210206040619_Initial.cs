@@ -185,6 +185,7 @@ namespace SarasTreasures.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     StoryID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -195,6 +196,12 @@ namespace SarasTreasures.Migrations
                         column: x => x.StoryID,
                         principalTable: "Story",
                         principalColumn: "StoryID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comment_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -241,6 +248,11 @@ namespace SarasTreasures.Migrations
                 name: "IX_Comment_StoryID",
                 table: "Comment",
                 column: "StoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comment_UserId",
+                table: "Comment",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Story_UserId",

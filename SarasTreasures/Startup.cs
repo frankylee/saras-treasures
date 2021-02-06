@@ -76,9 +76,9 @@ namespace SarasTreasures
             SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
 
             // Create a role manager and pass it to SeedData
-            RoleManager<IdentityRole> roleManager = app.ApplicationServices
-                .GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = app.ApplicationServices.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
+            // Create a user manager and pass it to SeedData
+            UserManager<AppUser> userManager = app.ApplicationServices.GetRequiredService<UserManager<AppUser>>();
             // Use SeedData if database is empty.
             SeedData.Seed(context, userManager, roleManager);
 

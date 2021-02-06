@@ -2,7 +2,6 @@
 using System.Linq;
 using SarasTreasures.Controllers;
 using SarasTreasures.Models;
-using SarasTreasures.Data;
 using Xunit;
 using Microsoft.AspNetCore.Identity;
 
