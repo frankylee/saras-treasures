@@ -100,6 +100,44 @@ namespace SarasTreasures.Controllers
             return View(results);
         }
 
+        [Authorize]
+        public IActionResult Comment(int storyID)
+        {
+            // Create a new comment view model with the passed in story id
+            // Pass the new view model to the post request
+            CommentVM cvm = new CommentVM { StoryID = storyID };
+            return View(cvm);
+        }
+
+        [Authorize]  // Is this necessary if the HttpGet must Authorize?
+        [HttpPost]
+        public async Task<IActionResult> Comment(CommentVM cvm)
+        {
+            // if model is valid, store in database
+            if (ModelState.IsValid)
+            {
+                // Create a new comment model with the passed in comment
+                Comment c = new Comment { Text = cvm.Text };
+                // Add logged in user to the model
+                c.User = await userManager.GetUserAsync(User);
+                // Add date and time of submission
+                c.Date = DateTime.Now;
+                // Query the database for the associated Story object
+                Story story = (from s in repo.Stories
+                               where s.StoryID == cvm.StoryID
+                               select s).First<Story>();
+                // Add the comment to the story and update the database
+                story.Comments.Add(c);
+                repo.UpdateStory(story);
+                // Add model to the database
+                //repo.AddStory(model);
+                // Redirect user to the HappyTails view
+                return Redirect("HappyTails");
+            }
+            ViewBag.TempData["Error"] = "There was a problem submitting your comment. Please try again.";
+            return View();
+        }
+
 
         public IActionResult Resources()
         {

@@ -21,6 +21,12 @@ namespace SarasTreasures.Models
             stories.Add(story);
         }
 
+        public void UpdateStory(Story story)
+        {
+            // simulate updating story in db
+            throw new NotImplementedException();
+        }
+
         public Story GetStoryByTitle(string title)
         {
             // find and return the first story with a matching title

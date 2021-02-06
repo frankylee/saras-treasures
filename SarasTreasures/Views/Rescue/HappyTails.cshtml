@@ -10,13 +10,15 @@
 
 <section>
     <form method="post" class="col-xl-8 my-5">
-        <div class="form-group">
-            <label for="Search" class="control-label">Filter by user or date submitted:</label>
-            <input name="Search" class="form-control">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success mr-4">Submit</button>
-            <a asp-action="HappyTails" class="text-secondary">Reset</a>
+        <div class="row">
+            <div class="col">
+                <label for="Search" class="control-label sr-only">Filter by phrase, user, or date submitted:</label>
+                <input name="Search" class="form-control mr-4" placeholder="Search adoption stories">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mr-4">Submit</button>
+                <a asp-action="HappyTails" class="text-secondary">Reset</a>
+            </div>
         </div>
     </form>
 </section>
@@ -30,7 +32,28 @@
         <p>@story.Text</p>
         <div class="row">
             <div class="col">@story.User.UserName</div>
-            <div class="col text-right">@story.Date</div>
+            <div class="col text-right">
+                @story.Date<br />
+                <a asp-action="Comment" asp-route-storyID="@story.StoryID" class="text-primary">Add comment</a>
+            </div>
         </div>
+        @if (story.Comments.Count > 0)
+        {
+            <div class="container">
+                <h5>Comments</h5>
+                @foreach (Comment c in story.Comments)
+                {
+                    <hr />
+                    <p>@c.Text</p>
+                    <div class="row">
+                        <div class="col">@c.User.UserName</div>
+                        <div class="col text-right">@c.Date</div>
+                    </div>
+                }
+                <div class="text-right">
+                    <a asp-action="Comment" asp-route-storyID="@story.StoryID" class="text-primary">Add comment</a>
+                </div>
+            </div>
+        }
     </div>
 }
