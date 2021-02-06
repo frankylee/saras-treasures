@@ -1,5 +1,7 @@
 # S.A.R.A.'s Treasures
 ASP.NET full website redesign for [local non-profit](https://sarastreasures.org) in Eugene, OR.
+View this project [live on Azure](https://sarastreasures.azurewebsites.net)
+
 
 ## Lab 1: Validation of User Input
 For all three types of web sites, add validation using data annotations to your models. Use validation that makes sense for the properties you choose to validate.
