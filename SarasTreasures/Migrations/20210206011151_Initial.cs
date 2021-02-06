@@ -177,6 +177,27 @@ namespace SarasTreasures.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comment",
+                columns: table => new
+                {
+                    CommentID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    StoryID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comment", x => x.CommentID);
+                    table.ForeignKey(
+                        name: "FK_Comment_Story_StoryID",
+                        column: x => x.StoryID,
+                        principalTable: "Story",
+                        principalColumn: "StoryID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -217,6 +238,11 @@ namespace SarasTreasures.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comment_StoryID",
+                table: "Comment",
+                column: "StoryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Story_UserId",
                 table: "Story",
                 column: "UserId");
@@ -240,10 +266,13 @@ namespace SarasTreasures.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Story");
+                name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Story");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
