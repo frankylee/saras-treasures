@@ -50,7 +50,7 @@ You will add all the same Authorization features to your web site that your inst
     - You will need to seed the database with a user who is in the Admin role in order to be able to access the management page for the first time.
 
 ## Lab 5: Complex Domain Models
-Add one or two additional classes to your web site's domain model. Make a UML class diagram of your domain model--include cardinality. 
+Add one or two additional classes to your web site's domain model. Make a UML class diagram of your domain model--include cardinality. Put the UML diagram in a docs folder in your solution.
   - Add comments to stories. A story can have multiple comments.
   - Implement your domain model in code. Add the corresponding controller method and view so that the new feature can be used by site users.
 ---
