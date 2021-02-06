@@ -33,8 +33,8 @@ namespace SarasTreasures.Models
                     Email = "srosenblum@aol.com",
                     RoleNames = { "User" }
                 };
-                context.Users.Add(user1);
-                context.SaveChanges();
+                //context.Users.Add(user1);
+                //context.SaveChanges();
 
                 AppUser user2 = new AppUser
                 {
@@ -44,8 +44,8 @@ namespace SarasTreasures.Models
                     Email = "paula_parrot@yahoo.com",
                     RoleNames = { "User" }
                 };
-                context.Users.Add(user2);
-                context.SaveChanges();
+                //context.Users.Add(user2);
+                //context.SaveChanges();
 
                 AppUser user3 = new AppUser
                 {
@@ -55,14 +55,14 @@ namespace SarasTreasures.Models
                     Email = "winelover387@hotmail.com",
                     RoleNames = { "User" }
                 };
-                context.Users.Add(user3);
-                context.SaveChanges();
-
-                // Add users to the database
-                //context.Users.Add(user1);
-                //context.Users.Add(user2);
                 //context.Users.Add(user3);
                 //context.SaveChanges();
+
+                // Add users to the database
+                context.Users.Add(user1);
+                context.Users.Add(user2);
+                context.Users.Add(user3);
+                context.SaveChanges();
 
 
                 // Create and add stories to the database

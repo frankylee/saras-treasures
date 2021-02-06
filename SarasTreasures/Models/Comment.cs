@@ -3,8 +3,8 @@ namespace SarasTreasures.Models
 {
     public class Comment
     {
-        public Comment()
-        {
-        }
+        public int CommentID { get; set; }
+        public string Text { get; set; }
+        DateTime Date { get; set; }
     }
 }

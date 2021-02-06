@@ -14,6 +14,7 @@ namespace SarasTreasures.Models
 
         // tables
         public DbSet<Story> Story { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
 
         // seed data upon database creation
