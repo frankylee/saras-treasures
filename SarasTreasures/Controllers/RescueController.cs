@@ -114,7 +114,7 @@ namespace SarasTreasures.Controllers
         }
 
         [HttpPost]
-        public IActionResult AnimalQuiz(Quiz q)
+        public IActionResult AnimalQuiz(QuizVM q)
         {
             q.CheckAnswers();
             return View(q);
