@@ -20,8 +20,10 @@ namespace SarasTreasures.Models
         {
             get
             {   // Get all Story objects in the Stories(HappyTails) DBContext
-                // and include the User object in each Story
-                return context.Story.Include(story => story.User);
+                // and include the User and Comment objects in each Story
+                return context.Story.Include(story => story.User)
+                    .Include(story => story.Comments)
+                    .ThenInclude(comment => comment.User);
             }
         } 
 
@@ -29,6 +31,13 @@ namespace SarasTreasures.Models
         {
             // store in database
             context.Story.Add(story);
+            context.SaveChanges();
+        }
+
+        public void UpdateStory(Story story)
+        {
+            // update story in the database
+            context.Story.Update(story);
             context.SaveChanges();
         }
 

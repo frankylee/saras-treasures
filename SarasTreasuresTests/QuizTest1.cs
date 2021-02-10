@@ -12,7 +12,7 @@ namespace Tests
         [Fact]
         public void CorrectAnswerTest()
         {
-            Quiz q = new Quiz()
+            QuizVM q = new QuizVM()
             {
                 UserInput1 = " BLACK ",
                 UserInput2 = "25%",
@@ -29,7 +29,7 @@ namespace Tests
         [Fact]
         public void IncorrectAnswerTest()
         {
-            Quiz q = new Quiz()
+            QuizVM q = new QuizVM()
             {
                 UserInput1 = "orange",
                 UserInput2 = "47%",

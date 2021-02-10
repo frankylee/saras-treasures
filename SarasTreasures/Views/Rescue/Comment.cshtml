@@ -1,0 +1,19 @@
+﻿@model CommentVM
+
+@{
+    ViewData["Title"] = "Add a Comment";
+}
+
+
+<h1>Leave a comment!</h1>
+
+<form method="post" class="col-xl-8 my-5">
+    <div class="form-group">
+        <label class="control-label sr-only">Pet adoption story</label>
+        <textarea type="text" asp-for="Text" class="form-control form-control-lg" rows="8" placeholder="Share your pet adoption story..."></textarea>
+        <span class="text-danger small" asp-validation-for="Text"></span>
+    </div>
+    <div class="text-right">
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+    </div>
+</form>

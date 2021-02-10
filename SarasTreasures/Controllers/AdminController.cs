@@ -94,7 +94,6 @@ namespace SarasTreasures.Controllers
 
             if (ModelState.IsValid)
             {
-                //var user = new AppUser { UserName = model.UserName };
                 var user = new AppUser
                 {
                     UserName = model.UserName,

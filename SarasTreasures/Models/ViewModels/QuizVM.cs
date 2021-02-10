@@ -2,7 +2,7 @@
 
 namespace SarasTreasures.Models
 {
-    public class Quiz
+    public class QuizVM
     {
         // instance variables
         private const string CORRECT = "Correct!";

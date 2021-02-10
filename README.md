@@ -1,6 +1,9 @@
 # S.A.R.A.'s Treasures
 ASP.NET full website redesign for [local non-profit](https://sarastreasures.org) in Eugene, OR.
 
+View this project [live on Azure](https://sarastreasures.azurewebsites.net)
+
+
 ## Lab 1: Validation of User Input
 For all three types of web sites, add validation using data annotations to your models. Use validation that makes sense for the properties you choose to validate.
 
@@ -48,5 +51,10 @@ You will add all the same Authorization features to your web site that your inst
     - Delete role
   - Restrict access to the management page to administrators.
     - You will need to seed the database with a user who is in the Admin role in order to be able to access the management page for the first time.
+
+## Lab 5: Complex Domain Models
+Add one or two additional classes to your web site's domain model. Make a UML class diagram of your domain model--include cardinality. Put the UML diagram in a docs folder in your solution.
+  - Add comments to stories. A story can have multiple comments.
+  - Implement your domain model in code. Add the corresponding controller method and view so that the new feature can be used by site users.
 ---
 ###### CS296N Web Development 2: ASP.NET W21

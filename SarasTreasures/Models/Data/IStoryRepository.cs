@@ -10,5 +10,7 @@ namespace SarasTreasures.Models
         Story GetStoryByTitle(string title);
         // Create
         void AddStory(Story story);
+        // Update
+        void UpdateStory(Story story);
     }
 }

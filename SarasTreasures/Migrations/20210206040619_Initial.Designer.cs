@@ -10,7 +10,7 @@ using SarasTreasures.Models;
 namespace SarasTreasures.Migrations
 {
     [DbContext(typeof(SarasTreasuresContext))]
-    [Migration("20210123014951_Initial")]
+    [Migration("20210206040619_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,34 @@ namespace SarasTreasures.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SarasTreasures.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("StoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("StoryID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comment");
+                });
+
             modelBuilder.Entity("SarasTreasures.Models.Story", b =>
                 {
                     b.Property<int>("StoryID")
@@ -309,6 +337,17 @@ namespace SarasTreasures.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SarasTreasures.Models.Comment", b =>
+                {
+                    b.HasOne("SarasTreasures.Models.Story", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("StoryID");
+
+                    b.HasOne("SarasTreasures.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SarasTreasures.Models.Story", b =>

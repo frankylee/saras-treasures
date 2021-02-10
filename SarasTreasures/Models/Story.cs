@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,6 +7,8 @@ namespace SarasTreasures.Models
 {
     public class Story
     {
+        private List<Comment> comments = new List<Comment>();
+        
         [Key]
         public int StoryID { get; set; }
 
@@ -22,5 +25,13 @@ namespace SarasTreasures.Models
         public DateTime Date { get; set; }
 
         public AppUser User { get; set; }
+
+        public List<Comment> Comments
+        {
+            get
+            {
+                return comments;
+            }
+        }
     }
 }
