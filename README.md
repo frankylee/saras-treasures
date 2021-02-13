@@ -56,5 +56,16 @@ You will add all the same Authorization features to your web site that your inst
 Add one or two additional classes to your web site's domain model. Make a UML class diagram of your domain model--include cardinality. Put the UML diagram in a docs folder in your solution.
   - Add comments to stories. A story can have multiple comments.
   - Implement your domain model in code. Add the corresponding controller method and view so that the new feature can be used by site users.
+  
+## Lab 6: Web Security Testing and Countermeasures
+Use OWASP ZAP to scan your code for security vulnerabilities.
+- Do a manual passive scan. Before doing the scan, log in as a registered user, but not as an admin. Navigate to every page of your web site and enter data in all the forms.
+- Run an automated passive scan.
+- Without closing the app, or after loading a stored passive testing session, run an active test of your web app.
+- Fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the web server.
+- Add a markdown document containing:
+    - A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
+    - The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
+    - A list of the issues that come up in passive and active scans after making the code changes.
 ---
 ###### CS296N Web Development 2: ASP.NET W21
