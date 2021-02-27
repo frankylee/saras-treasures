@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace SarasTreasures.Models
@@ -41,11 +42,71 @@ namespace SarasTreasures.Models
             context.SaveChanges();
         }
 
+        public Story GetStoryByID(int id)
+        {
+            // find and return the only story with the matching id
+            Story story = context.Story.Find(id);
+            return story;
+        }
+
         public Story GetStoryByTitle(string title)
         {
-            // find and return the first story with a matching title
+            // find and return the first story with the matching title
             Story story = context.Story.First(s => s.Title == title);
             return story;
         }
+
+        public void DeleteStory(int id)
+        {
+            // find the story with a matching id
+            Story story = context.Story.Find(id);
+            // if story exists, remove from context
+            if (story != null)
+                context.Story.Remove(story);
+        }
+
+
+        // ---------------
+        //  C O M M E N T
+        // ---------------
+
+        public IQueryable<Comment> Comments
+        {
+            get
+            {
+                return context.Comment;
+            }
+        }
+        public Comment GetCommentByID(int id)
+        {
+            // Find comment with the mathing id
+            Comment c = context.Comment.Find(id);
+            // Return comment (or null)
+            return c;
+        }
+
+        public void AddComment(Comment comment)
+        {
+            // Add to database and save changes
+            context.Comment.Add(comment);
+            context.SaveChanges();
+        }
+        
+        public void UpdateComment(Comment comment)
+        {
+            // Update comment and save changes
+            context.Comment.Update(comment);
+            context.SaveChanges();
+        }
+
+        public void DeleteComment(int id)
+        {
+            // Find comment with the matching id
+            Comment comment = context.Comment.Find(id);
+            // If comment exists, remove from context
+            if (comment != null)
+                context.Comment.Remove(comment);
+        }
     }
 }
+

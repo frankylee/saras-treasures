@@ -50,6 +50,17 @@ namespace SarasTreasures
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SarasTreasuresContext context)
         {
+            app.Use(async (ctx, next) =>
+            {
+                // Prevent clickjacking by setting X-Frame-Options at the code level;
+                // use this header to ensure content cannot be iframed
+                // X-Frame-Options Header Not Set 
+                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                // X-Content-Type-Options Header Missing
+                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                await next();
+            });
+
             // Sets cookies to secure and limits the reach of XSS attack vectors
             app.UseCookiePolicy(new CookiePolicyOptions
             {
@@ -65,18 +76,6 @@ namespace SarasTreasures
                 Domain = "http://sarastreasures.azurewebsites.net",
                 //Path = "/"
             };
-
-            app.Use(async (ctx, next) =>
-            {
-                // Prevent clickjacking by setting X-Frame-Options at the code level;
-                // use this header to ensure content cannot be iframed
-                // X-Frame-Options Header Not Set 
-                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
-                // X-Content-Type-Options Header Missing
-                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-                await next();
-            });
-
 
             if (env.IsDevelopment())
             {
