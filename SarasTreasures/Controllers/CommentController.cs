@@ -13,9 +13,9 @@ namespace SarasTreasures.Controllers
     public class CommentController : ControllerBase
     {
         private UserManager<AppUser> userManager;
-        private readonly IStoryRepository repo;
+        private readonly ICommentRepository repo;
 
-        public CommentController(UserManager<AppUser> userMngr, IStoryRepository r)
+        public CommentController(UserManager<AppUser> userMngr, ICommentRepository r)
         {
             userManager = userMngr;
             repo = r;

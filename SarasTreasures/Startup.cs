@@ -33,6 +33,7 @@ namespace SarasTreasures
             services.AddControllersWithViews();
             // Inject repositories into controller
             services.AddTransient<IStoryRepository, StoryRepository>();  // <Repo interface, Repo class>
+            services.AddTransient<ICommentRepository, CommentRepository>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
