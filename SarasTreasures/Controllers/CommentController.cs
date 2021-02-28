@@ -87,25 +87,25 @@ namespace SarasTreasures.Controllers
         }
 
 
-        [HttpPatch("{id}")]
-        public ActionResult<Comment> PatchComment(int id, string path, string value)
-        {
-            // First get the comment with the same id
-            var comment = repo.GetCommentByID(id);
-            // Update the new value
-            switch (path)
-            {
-                case "text":
-                    comment.Text = value;
-                    break;
-                default:
-                    return BadRequest();
-            }
-            // Update the comment in the database
-            repo.UpdateComment(comment);
-            // Return OK
-            return Ok(comment);
-        }
+        //[HttpPatch("{id}")]
+        //public ActionResult<Comment> PatchComment(int id, string path, string value)
+        //{
+        //    // First get the comment with the same id
+        //    var comment = repo.GetCommentByID(id);
+        //    // Update the new value
+        //    switch (path)
+        //    {
+        //        case "text":
+        //            comment.Text = value;
+        //            break;
+        //        default:
+        //            return BadRequest();
+        //    }
+        //    // Update the comment in the database
+        //    repo.UpdateComment(comment);
+        //    // Return OK
+        //    return Ok(comment);
+        //}
 
 
         [HttpDelete("{id}")]

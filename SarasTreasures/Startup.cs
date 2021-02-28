@@ -106,7 +106,7 @@ namespace SarasTreasures
             });
 
             // Call async method to Seed Roles & Users from the DbContext
-            SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
+            //SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
             // Create a role manager and pass it to SeedData
             RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             // Create a user manager and pass it to SeedData
