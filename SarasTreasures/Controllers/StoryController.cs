@@ -80,6 +80,7 @@ namespace SarasTreasures.Controllers
                 story.Title = s.Title;
                 story.Text = s.Text;
                 story.Filename = s.Filename;
+                story.User = s.User;
                 // After updating values, update story in the database
                 repo.UpdateStory(story);
                 // Return Ok
@@ -90,31 +91,31 @@ namespace SarasTreasures.Controllers
         }
 
 
-        [HttpPatch("{id}")]
-        public ActionResult<Story> PatchStory(int id, string path, string value)
-        {
-            // First get the story with the same id
-            var story = repo.GetStoryByID(id);
-            // Update the new value
-            switch (path)
-            {
-                case "title":
-                    story.Title = value;
-                    break;
-                case "text":
-                    story.Text = value;
-                    break;
-                case "filename":
-                    story.Filename = value;
-                    break;
-                default:
-                    return BadRequest();
-            }
-            // Update the story in the database
-            repo.UpdateStory(story);
-            // Return OK
-            return Ok(story);
-        }
+        //[HttpPatch("{id}")]
+        //public ActionResult<Story> PatchStory(int id, string path, string value)
+        //{
+        //    // First get the story with the same id
+        //    var story = repo.GetStoryByID(id);
+        //    // Update the new value
+        //    switch (path)
+        //    {
+        //        case "title":
+        //            story.Title = value;
+        //            break;
+        //        case "text":
+        //            story.Text = value;
+        //            break;
+        //        case "filename":
+        //            story.Filename = value;
+        //            break;
+        //        default:
+        //            return BadRequest();
+        //    }
+        //    // Update the story in the database
+        //    repo.UpdateStory(story);
+        //    // Return OK
+        //    return Ok(story);
+        //}
 
 
         [HttpDelete("{id}")]

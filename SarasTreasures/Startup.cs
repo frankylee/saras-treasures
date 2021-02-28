@@ -61,13 +61,16 @@ namespace SarasTreasures
                 await next();
             });
 
+            // TODO 02/27/2021 ?? Had to comment out this section because it
+            // prevented a users from being able to login or logout
+            //
             // Sets cookies to secure and limits the reach of XSS attack vectors
-            app.UseCookiePolicy(new CookiePolicyOptions
-            {
-                HttpOnly = HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.Always,
-                MinimumSameSitePolicy = SameSiteMode.Strict
-            });
+            //app.UseCookiePolicy(new CookiePolicyOptions
+            //{
+            //    HttpOnly = HttpOnlyPolicy.Always,
+            //    Secure = CookieSecurePolicy.Always,
+            //    MinimumSameSitePolicy = SameSiteMode.Strict
+            //});
 
             // Define new cookie options and prevent loosely scoped cookie;
             // Only works on live site, not localhost

@@ -45,7 +45,10 @@ namespace SarasTreasures.Models
         public Story GetStoryByID(int id)
         {
             // find and return the only story with the matching id
-            Story story = context.Story.Find(id);
+            Story story = context.Story.Include(story => story.User)
+                .Include(story => story.Comments)
+                .ThenInclude(comment => comment.User)
+                .First(story => story.StoryID == id);
             return story;
         }
 
@@ -56,13 +59,20 @@ namespace SarasTreasures.Models
             return story;
         }
 
+        public IQueryable<Story> GetStoriesByUser(AppUser user)
+        {
+            return (from s in context.Story
+                    where s.User.UserName.Equals(user)
+                    select s).Include(s => s.User.UserName);
+        }
+
         public void DeleteStory(int id)
         {
-            // find the story with a matching id
-            Story story = context.Story.Find(id);
-            // if story exists, remove from context
-            if (story != null)
-                context.Story.Remove(story);
+            // Find the story with a matching id
+            Story story = context.Story.First(story => story.StoryID == id);
+            // Remove story from context and save changes
+            context.Remove(story);
+            context.SaveChanges();
         }
 
 
@@ -74,13 +84,14 @@ namespace SarasTreasures.Models
         {
             get
             {
-                return context.Comment;
+                return context.Comment.Include(comment => comment.User);
             }
         }
         public Comment GetCommentByID(int id)
         {
             // Find comment with the mathing id
-            Comment c = context.Comment.Find(id);
+            Comment c = context.Comment.Include(comment => comment.User)
+                .First(comment => comment.CommentID == id);
             // Return comment (or null)
             return c;
         }
@@ -102,10 +113,10 @@ namespace SarasTreasures.Models
         public void DeleteComment(int id)
         {
             // Find comment with the matching id
-            Comment comment = context.Comment.Find(id);
-            // If comment exists, remove from context
-            if (comment != null)
-                context.Comment.Remove(comment);
+            Comment comment = context.Comment.First(comment => comment.CommentID == id);
+            // Remove from context and save changes
+            context.Remove(comment);
+            context.SaveChanges();
         }
     }
 }
