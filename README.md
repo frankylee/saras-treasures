@@ -67,5 +67,14 @@ Use OWASP ZAP to scan your code for security vulnerabilities.
     - A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
     - The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
     - A list of the issues that come up in passive and active scans after making the code changes.
+    
+## Lab 7: REST Web API
+Do the tutorial: [Tutorial: Create a web API with ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio)
+**Your Own Web API**
+- Add two API controllers to your web site. The Web API (consisting of two controllers) will have REST endpoints to allow users to do the following:
+    - Post or read stories and comments.
+    - Use one controller for stories and another for comments.
+- Test each endpoint using Postman. Copy/paste each request and response into a document.
+- Publish your Web API to an online web server.
 ---
 ###### CS296N Web Development 2: ASP.NET W21

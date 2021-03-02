@@ -33,6 +33,7 @@ namespace SarasTreasures
             services.AddControllersWithViews();
             // Inject repositories into controller
             services.AddTransient<IStoryRepository, StoryRepository>();  // <Repo interface, Repo class>
+            services.AddTransient<ICommentRepository, CommentRepository>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDbContext<SarasTreasuresContext>(options => options.UseSqlServer(Configuration["ConnectionString:AzureSQL"]));
@@ -50,22 +51,6 @@ namespace SarasTreasures
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SarasTreasuresContext context)
         {
-            // Sets cookies to secure and limits the reach of XSS attack vectors
-            app.UseCookiePolicy(new CookiePolicyOptions
-            {
-                HttpOnly = HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.Always,
-                MinimumSameSitePolicy = SameSiteMode.Strict
-            });
-
-            // Define new cookie options and prevent loosely scoped cookie;
-            // Only works on live site, not localhost
-            CookieOptions cookie = new CookieOptions
-            {
-                Domain = "http://sarastreasures.azurewebsites.net",
-                //Path = "/"
-            };
-
             app.Use(async (ctx, next) =>
             {
                 // Prevent clickjacking by setting X-Frame-Options at the code level;
@@ -77,6 +62,24 @@ namespace SarasTreasures
                 await next();
             });
 
+            // TODO 02/27/2021 ?? Had to comment out this section because it
+            // prevented a users from being able to login or logout
+            //
+            // Sets cookies to secure and limits the reach of XSS attack vectors
+            //app.UseCookiePolicy(new CookiePolicyOptions
+            //{
+            //    HttpOnly = HttpOnlyPolicy.Always,
+            //    Secure = CookieSecurePolicy.Always,
+            //    MinimumSameSitePolicy = SameSiteMode.Strict
+            //});
+
+            // Define new cookie options and prevent loosely scoped cookie;
+            // Only works on live site, not localhost
+            CookieOptions cookie = new CookieOptions
+            {
+                Domain = "http://sarastreasures.azurewebsites.net",
+                //Path = "/"
+            };
 
             if (env.IsDevelopment())
             {
@@ -104,7 +107,7 @@ namespace SarasTreasures
             });
 
             // Call async method to Seed Roles & Users from the DbContext
-            SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
+            //SarasTreasuresContext.CreateAdminUser(app.ApplicationServices).Wait();
             // Create a role manager and pass it to SeedData
             RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             // Create a user manager and pass it to SeedData

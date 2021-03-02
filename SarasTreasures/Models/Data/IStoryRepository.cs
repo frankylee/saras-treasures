@@ -5,12 +5,15 @@ namespace SarasTreasures.Models
 {
     public interface IStoryRepository
     {
-        // Retrieve 
-        IQueryable<Story> Stories { get; }
-        Story GetStoryByTitle(string title);
         // Create
         void AddStory(Story story);
+        // Retrieve 
+        IQueryable<Story> Stories { get; }
+        Story GetStoryByID(int id);
+        Story GetStoryByTitle(string title);
         // Update
         void UpdateStory(Story story);
+        // Delete
+        void DeleteStory(int id);
     }
 }
